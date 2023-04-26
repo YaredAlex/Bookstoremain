@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.search-bar {
+  display: block;
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background: rgba(0, 0, 0, 0.269);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar::placeholder {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 150px;
+  border: 3px solid black;
+  width: 80%;
+  overflow: hidden;
+  -webkit-box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+  box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+}
+
+h2 {
+  text-align: center;
+  margin: 20px 10px;
+  margin-top: 0px;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+}
+
+.background {
+  background: url('https://i0.wp.com/film-english.com/wp-content/uploads/2021/10/bookshop_the_reader_lesson_plan_learn_english.png?fit=1512%2C970&ssl=1') no-repeat center center;
+  min-height: 400px;
+}
+
+.background-cover {
+  background-color: rgba(0, 0, 0, 0.285);
+  height: 400px;
+  padding-top: 40px;
+}
+
+.book-card-container {
+  width: 150px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+  box-shadow: 10px 23px 78px -28px rgba(0, 0, 0, 0.52);
+}
+
+.book-card-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: fill;
+}
+
+.card-scroll-horizontal {
+  display: flex;
+  column-gap: 10px;
+  overflow-x: scroll;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+
+@media screen and (max-width:500px) {
+  h2 {
+    text-align: center;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
   }
-  to {
-    transform: rotate(360deg);
+
+  .book-card-container {
+    width: 100px;
+    height: 170px;
+    font-size: 11px;
+  }
+
+  .card-scroll-horizontal {
+    padding: 5px 10px;
+    margin-top: 20px;
+    padding-bottom: 40px;
+  }
+
+  .book-card-container img {
+    width: 100%;
+    height: 120px;
+    object-fit: fill;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 50px;
+    border: 0.5px solid black;
+
   }
 }

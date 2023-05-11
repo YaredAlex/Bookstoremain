@@ -18,7 +18,10 @@ const Books = ({ document }) => {
                             <img src={item.imageUrl} className="book-img" alt={item.name} />
                         </div>
                         <div>
-                            <p>{item.name}</p>
+                            {item.name.length > 15 ? <p>{item.name.substring(0, 15)}...</p> :
+
+                                <p>{item.name}</p>}
+
                         </div>
                     </div>
                 ))}

@@ -29,13 +29,13 @@ function App() {
             <div className='search-container'>
               <input type="search" placeholder='Search your favorite book' className='search-bar' />
               <img src={search} width="20px" height={"20px"}
-                style={{ marginRight: "20px" }} />
+                style={{ marginRight: "20px", minWidth: "20px" }} />
             </div>
           </div>
         </div>
       </div>
       <div>
-        <h3>Here are your books</h3>
+        <h3 className='mt-3 ms-2'>Here are your books</h3>
         <Books document={document} />
       </div>
     </div>

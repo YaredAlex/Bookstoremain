@@ -9,16 +9,17 @@ function Detail() {
     const [loading, setLoading] = useState(true);
     const [text, setText] = useState("");
     const [name, setName] = useState("");
-    useEffect(() => {
-        const unsubscribe = async () => {
-            const docRef = doc(db, "books", id);
-            const snap = await getDoc(docRef);
-            if (snap.exists()) {
-                setData(snap.data())
-                setLoading(false);
-            }
-
+    const unsubscribe = async () => {
+        const docRef = doc(db, "books", id);
+        const snap = await getDoc(docRef);
+        if (snap.exists()) {
+            setData(snap.data())
+            setLoading(false);
         }
+
+    }
+    useEffect(() => {
+
         unsubscribe();
     }, []);
     const submitComment = async () => {
@@ -37,6 +38,7 @@ function Detail() {
             }, { merge: true });
         setText("")
         setName("")
+        data.comment = [...data.comment, { text: text, name: name }];
     }
     const generateStart = () => {
 
@@ -57,8 +59,8 @@ function Detail() {
                             <img src={data.imageUrl} className="" alt={data.name} />
                         </div>
                         <p
-                            className='w-25 text-center fw-bold'>{data.name}</p>
-                        <div className='w-400 mt-1'>
+                            className='w-50 text-center fw-bold'>{data.name}</p>
+                        <div className='w-400 w-75 mt-md-2'>
                             <p>{data.description}</p>
                         </div>
                         <p className='m-0'>Rating</p>
@@ -73,34 +75,36 @@ function Detail() {
                             className='btn btn-primary d-block'
                             href={data.fileUrl} download="DownloadPDF" target="_blank">GET PDF</a>
                         <div>
-                            {data.comment && <p className='h6 mt-3'>Other's suggestions<hr /></p>}
-                            {
-                                data.comment && data.comment.map(com => (
-                                    <div className='divide form-control mb-2'>
-                                        <p className='h6'>{com.name}</p>
-                                        <p>{com.text}</p>
+                            {data.comment && <> <p className='h6 mt-3 ms-2'>Other's suggestions</p><hr /></>}
+                            <div className='p-2'>
+                                {
+                                    data.comment && data.comment.map((com, index) => (
+                                        <div className='divide form-control mb-2' key={index}>
+                                            <p className='h6'>{com.name}</p>
+                                            <p>{com.text}</p>
 
-                                    </div>
-                                ))
-                            }
+                                        </div>
+                                    ))
+                                }
 
-                            <p className='h5'>Put your suggestions</p>
-                            <input placeholder='Your Name' className='form-control d-block mb-2'
-                                onChange={(e) => setName(e.target.value)}
-                                value={name} />
-                            <textarea cols='30' rows='2'
-                                placeholder='Your comment'
-                                className='form-control'
-                                id="comment"
-                                value={text}
-                                onChange={(e) => setText(e.target.value)}
-                            />
-                            <button className='btn btn-success d-block mt-2'
-                                style={{
-                                    width: "200px",
-                                    marginBottom: "10px"
-                                }}
-                                onClick={() => submitComment()}>Submit</button>
+                                <p className='h5'>Put your suggestions</p>
+                                <input placeholder='Your Name' className='form-control d-block mb-2'
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name} />
+                                <textarea cols='30' rows='2'
+                                    placeholder='Your comment'
+                                    className='form-control'
+                                    id="comment"
+                                    value={text}
+                                    onChange={(e) => setText(e.target.value)}
+                                />
+                                <button className='btn btn-success d-block mt-2'
+                                    style={{
+                                        width: "200px",
+                                        marginBottom: "10px"
+                                    }}
+                                    onClick={() => submitComment()}>Submit</button>
+                            </div>
                         </div>
                     </div>
 

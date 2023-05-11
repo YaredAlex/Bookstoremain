@@ -4,6 +4,7 @@ import './config.js'
 import db from './config.js';
 import { doc, getDocs, collection, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from 'react';
+import Books from './components/Books';
 function App() {
   const [document, setDocument] = useState([]);
   useEffect(() => {
@@ -13,7 +14,7 @@ function App() {
   const getData = async () => {
     const querySnapshot = await getDocs(collection(db, "books"));
     querySnapshot.forEach((doc) => {
-      setDocument(r => [...r, doc.data()]);
+      setDocument(r => [...r, { ...doc.data(), id: doc.id }]);
       console.log(document)
 
     });
@@ -35,20 +36,7 @@ function App() {
       </div>
       <div>
         <h3>Here are your books</h3>
-        <div className='card-scroll-horizontal'>
-          {document && document.map((item, index) => (
-            <div className='book-card-container' key={index}>
-              <div className='book-card-img-container'>
-                <img src={item.imageUrl} className="book-img" alt={doc.name} />
-              </div>
-              <div>
-                <p>{item.name}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-
+        <Books document={document} />
       </div>
     </div>
   );

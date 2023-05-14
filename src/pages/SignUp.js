@@ -2,13 +2,16 @@ import React, { useRef, useState } from 'react'
 import swal from 'sweetalert';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import ReactLoading from 'react-loading'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
+import db from '../config';
 const SignUp = () => {
     const [credential, setCrendential] = useState({
         email: "",
         password: "",
         confirm: ""
     });
+    const navigation = useNavigate();
     const [loading, setLoading] = useState(false)
 
     const signUpUser = async (e) => {
@@ -21,8 +24,7 @@ const SignUp = () => {
         setLoading(true)
         createUserWithEmailAndPassword(getAuth(), credential.email, credential.password)
             .then(res => {
-                setLoading(false)
-                console.log(res)
+                registerUser(res);
             }).catch(e => {
                 setLoading(false)
                 setCrendential({ ...credential, password: "", confirm: "" })
@@ -31,6 +33,20 @@ const SignUp = () => {
 
             })
 
+    }
+    const registerUser = async (user) => {
+        console.log(user.user.uid)
+        const ref = doc(db, "users", user.user.uid);
+        await setDoc(ref, {
+            email: user.user.email
+        }).then(res => {
+            console.log(res)
+            setLoading(false)
+            navigation("/");
+        }).catch(e => {
+            console.log(e)
+            setLoading(false)
+        })
     }
     const showPassword = (e, id) => {
         const pass = document.getElementById(id);

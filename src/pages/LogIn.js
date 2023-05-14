@@ -9,6 +9,7 @@ const LogIn = () => {
         email: "",
         password: "",
     });
+    const [text, setText] = useState("")
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
 
@@ -86,6 +87,7 @@ const LogIn = () => {
                         </div>
                         <button className='btn btn-outline-primary mt-3'>Login</button>
                     </form>
+
                     <p>don't have account <Link to={"/signup"}>create one?</Link></p>
                 </div>
             </div>

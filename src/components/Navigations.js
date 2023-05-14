@@ -60,8 +60,12 @@ const Navigation = () => {
                 <div className="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto ml-2">
                         <li className="nav-item active">
-                            <a className="nav-link" href="/">Home<span className="sr-only">(current)</span></a>
+                            <Link className="nav-link" to={"/"}>Home<span className="sr-only">(current)</span></Link>
                         </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link" to={"/discussion"}>Book Club<span className="sr-only">(current)</span></Link>
+                        </li>
+
                         {/* <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li> */}

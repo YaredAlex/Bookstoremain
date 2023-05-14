@@ -1,6 +1,6 @@
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import db from '../config';
 
@@ -24,7 +24,7 @@ function Detail() {
             getAuth().onAuthStateChanged(user => {
                 if (user != null) {
                     console.log(user)
-                    setCurrentUser(u => user);
+                    setCurrentUser(() => user);
                 }
             })
         }
@@ -83,9 +83,9 @@ function Detail() {
                         </div>
                         <a
                             className='btn btn-primary d-block'
-                            href={data.fileUrl} download="DownloadPDF" target="_blank">GET PDF</a>
+                            href={data.fileUrl} download="DownloadPDF" target="_blank" rel="noreferrer">GET PDF</a>
                         <div className='suggestion-container'>
-                            {data.comment && <> <p className='h6 mt-3 ms-2'>Other's suggestions</p><hr /></>}
+                            {data.comment && <> <p className='h6 mt-3 ms-2'>Other&aposs suggestions</p><hr /></>}
                             <div className='p-2'>
                                 {
                                     data.comment && data.comment.map((com, index) => (

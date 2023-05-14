@@ -2,7 +2,7 @@ import './App.css';
 import searchpng from "./search.png"
 import './config.js'
 import db from './config.js';
-import { doc, getDocs, collection, getFirestore } from "firebase/firestore";
+import { getDocs, collection, } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import Books from './components/Books';
 import { useNavigate } from 'react-router-dom';

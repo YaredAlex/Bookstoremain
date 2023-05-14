@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useState } from 'react'
 import swal from 'sweetalert';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import ReactLoading from 'react-loading'

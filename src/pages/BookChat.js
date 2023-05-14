@@ -1,6 +1,6 @@
 import { getAuth } from 'firebase/auth';
-import { doc, getDoc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore';
-import React, { useEffect, useRef, useState } from 'react'
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import db from '../config';
 
@@ -8,7 +8,6 @@ const BookChat = () => {
     const { id } = useParams()
     const [chats, setChats] = useState([])
     const [currentUser, setCurrentUser] = useState(null)
-    const [text, setText] = useState("")
     const [book, setBook] = useState("")
     const getBook = async () => {
         const docRef = doc(db, "books", id);
@@ -45,7 +44,7 @@ const BookChat = () => {
                         }
                         if (i != key) {
                             const x = tmp[i];
-                            tmp[i] = tmp[key];
+                            tmp[i] = tmp[key]
                             tmp[key] = x
                         }
                     }
@@ -78,9 +77,8 @@ const BookChat = () => {
                 }
             }
             , { merge: true })
-            .then(res => {
+            .then(() => {
                 getChanges();
-                setText("")
                 document.getElementById("msg").value = ""
             })
             .catch(e => {

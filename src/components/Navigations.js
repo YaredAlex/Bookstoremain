@@ -29,11 +29,11 @@ const Navigation = () => {
             .then(logout => {
                 if (logout) {
                     signOut(getAuth())
-                        .then(res => {
+                        .then(() => {
                             swal("Logedout", "You have successfuly loged out", "success")
                             setCurrentUser(null)
                         })
-                        .catch(e => {
+                        .catch(() => {
                             swal("Error", "error occured while signout", "danger")
                         })
 

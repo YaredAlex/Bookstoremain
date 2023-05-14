@@ -20,7 +20,7 @@ const Books = ({ document }) => {
                         <div>
                             {item.name.length > 15 ? <p>{item.name.substring(0, 15)}...</p> :
 
-                                <p>{item.name}</p>}
+                                <p>{item.name.substring(0, 15)}</p>}
 
                         </div>
                     </div>

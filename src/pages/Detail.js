@@ -1,3 +1,5 @@
+import { async } from '@firebase/util';
+import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -9,6 +11,7 @@ function Detail() {
     const [loading, setLoading] = useState(true);
     const [text, setText] = useState("");
     const [name, setName] = useState("");
+    const [currentUser, setCurrentUser] = useState("");
     const unsubscribe = async () => {
         const docRef = doc(db, "books", id);
         const snap = await getDoc(docRef);
@@ -16,11 +19,19 @@ function Detail() {
             setData(snap.data())
             setLoading(false);
         }
-
     }
     useEffect(() => {
-
+        const getUser = async () => {
+            getAuth().onAuthStateChanged(user => {
+                if (user != null) {
+                    console.log(user)
+                    setCurrentUser(u => user);
+                }
+            })
+        }
+        getUser();
         unsubscribe();
+        return (() => getUser())
     }, []);
     const submitComment = async () => {
         if (name === "") {
@@ -40,9 +51,6 @@ function Detail() {
         setName("")
         data.comment = [...data.comment, { text: text, name: name }];
     }
-    const generateStart = () => {
-
-    }
     return (
         <>
             {loading ? <p>Page is loading</p> :
@@ -60,7 +68,7 @@ function Detail() {
                         </div>
                         <p
                             className='w-50 text-center fw-bold'>{data.name}</p>
-                        <div className='w-400 w-75 mt-md-2'>
+                        <div className='w-400 w-50 mt-md-2'>
                             <p>{data.description}</p>
                         </div>
                         <p className='m-0'>Rating</p>
@@ -74,7 +82,7 @@ function Detail() {
                         <a
                             className='btn btn-primary d-block'
                             href={data.fileUrl} download="DownloadPDF" target="_blank">GET PDF</a>
-                        <div>
+                        <div className='suggestion-container'>
                             {data.comment && <> <p className='h6 mt-3 ms-2'>Other's suggestions</p><hr /></>}
                             <div className='p-2'>
                                 {
@@ -98,12 +106,21 @@ function Detail() {
                                     value={text}
                                     onChange={(e) => setText(e.target.value)}
                                 />
-                                <button className='btn btn-success d-block mt-2'
+                                {currentUser ? <button className='btn btn-success d-block mt-2'
                                     style={{
                                         width: "200px",
                                         marginBottom: "10px"
                                     }}
-                                    onClick={() => submitComment()}>Submit</button>
+
+                                    onClick={() => submitComment()}>Submit</button> :
+
+                                    <button className='btn btn-success d-block mt-2'
+                                        style={{
+                                            width: "200px",
+                                            marginBottom: "10px"
+                                        }} disabled
+                                    >Login to Submit</button>}
+
                             </div>
                         </div>
                     </div>

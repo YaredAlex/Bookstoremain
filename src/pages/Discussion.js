@@ -29,7 +29,7 @@ const Discussion = () => {
         });
     }
     const JoinClub = (id) => {
-        navigate(`/discussion/${id}`)
+        navigate(`/discussion/chat/${id}`)
     }
     return (
         <div>
@@ -46,7 +46,7 @@ const Discussion = () => {
 
                                 <p>{item.name.substring(0, 15)}</p>} */}
                             <button className='btn btn-outline-secondary w-100 mt-1'
-                                onClick={() => JoinClub(item.id)}>JOIN</button>
+                            >JOIN</button>
                         </div>
                     </div>
                 ))}

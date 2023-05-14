@@ -56,7 +56,7 @@ const BookChat = () => {
         }
         getChats();
         return () => {
-            setChats([])
+            setChats([]);
             getChats();
         }
     }, [])

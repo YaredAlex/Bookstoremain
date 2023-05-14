@@ -99,9 +99,11 @@ h2 {
 }
 
 .w-400 {
-  width: 400px;
+  width: 500px;
   text-align: justify;
 }
+
+.book-descrption {}
 
 .img_detail {
   width: 200px;
@@ -154,5 +156,10 @@ h2 {
     margin-top: 50px;
     width: 90%;
 
+  }
+
+  .w-400 {
+    width: 90%;
+    text-align: justify;
   }
 }

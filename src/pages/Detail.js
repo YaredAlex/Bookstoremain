@@ -68,7 +68,7 @@ function Detail() {
                         </div>
                         <p
                             className='w-50 text-center fw-bold'>{data.name}</p>
-                        <div className='w-400 w-50 mt-md-2'>
+                        <div className='w-400 mt-md-2 book-descrption'>
                             <p>{data.description}</p>
                         </div>
                         <p className='m-0'>Rating</p>

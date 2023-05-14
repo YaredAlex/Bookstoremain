@@ -27,7 +27,6 @@ function App() {
     setSearch(e.target.value);
     if (e.target.value.length >= 2) {
       const result = document.filter(book => book.name.toLowerCase().includes(e.target.value.toLowerCase()))
-      console.log(result)
       setSearched(result)
     }
     else
@@ -46,7 +45,7 @@ function App() {
             </div>
             {searched.length >= 1 && searched.map((book, index) =>
               <div key={index}
-                style={{ backgroundColor: "white", padding: "20px", borderRadius: "10px", width: "300px", cursor: "pointer" }}
+                style={{ backgroundColor: "white", padding: "20px", borderRadius: "10px", width: "300px", cursor: "pointer", zIndex: "100" }}
                 onClick={() => navigate(`detail/${book.id}`)}>
                 <p>{book.name}</p>
                 <hr />

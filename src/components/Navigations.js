@@ -97,12 +97,8 @@ const Navigation = () => {
                         style={{
                             display: "block",
 
-                        }} to="/login">Login</Link>
-                        <Link className="btn btn-primary"
-                            style={{
-                                display: "block",
-
-                            }} to="/signup">Sign Up</Link> </>}
+                        }} to="/login">Login/SignUp</Link>
+                    </>}
             </div>
         </div>
     )

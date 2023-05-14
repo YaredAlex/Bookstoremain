@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import swal from 'sweetalert';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import ReactLoading from 'react-loading'
+import { Link } from 'react-router-dom';
 const SignUp = () => {
     const [credential, setCrendential] = useState({
         email: "",
@@ -90,10 +91,10 @@ const SignUp = () => {
                                 style={{ padding: "5px" }}
                                 onClick={(e) => showPassword(e, "confirm")} className="btn">S</span>
                         </div>
-
                         <button className='btn btn-outline-primary mt-3'
                         >SignUp</button>
                     </form>
+                    <p>already have account <Link to={"/login"}>Login</Link></p>
                 </div>
             </div>
         </>

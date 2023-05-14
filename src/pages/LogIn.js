@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react'
 import ReactLoading from 'react-loading'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const LogIn = () => {
@@ -86,6 +86,7 @@ const LogIn = () => {
                         </div>
                         <button className='btn btn-outline-primary mt-3'>Login</button>
                     </form>
+                    <p>don't have account <Link to={"/signup"}>create one?</Link></p>
                 </div>
             </div>
         </>

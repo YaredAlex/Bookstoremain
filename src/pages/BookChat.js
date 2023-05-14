@@ -124,11 +124,9 @@ const BookChat = () => {
         <div className='chat-container'>
             {book &&
                 <div className='mt-2'>
-
                     <h5 className='text-center'>CLUB</h5>
                     <p className='p-2 mb-0'>{book.name}</p>
                 </div>}
-
             <div className='chat-window p-2'>
                 <div className='chats'>
                     {chats ? chats.map((chat, index) => (

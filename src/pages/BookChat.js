@@ -122,36 +122,28 @@ const BookChat = () => {
     }
     return (
         <div className='chat-container'>
-            {book && <div className='book-card-container'
-            >
-                <div className='book-card-img-container'>
-                    <img src={book.imageUrl} className="book-img" height={"200px"} alt={book.name} />
-                </div>
-                <div>
-                    {/* {item.name.length > 15 ? <p>{item.name.substring(0, 15)}...</p> :
+            {book &&
+                <div className='mt-2'>
 
-                                <p>{item.name.substring(0, 15)}</p>} */}
-                </div>
-            </div>}
+                    <h5 className='text-center'>CLUB</h5>
+                    <p className='p-2 mb-0'>{book.name}</p>
+                </div>}
 
-            <div className='chat-window'>
-                {chats ? chats.map((chat, index) => (
-                    <Messages chat={chat} index={index} key={index} />
-                )) : <></>}
+            <div className='chat-window p-2'>
+                <div className='chats'>
+                    {chats ? chats.map((chat, index) => (
+                        <Messages chat={chat} index={index} key={index} />
+                    )) : <></>}
+                </div>
                 <form onSubmit={(e) => sendChat(e)}>
                     <div>
                         <input type="" placeholder="Msg" id="msg" required className='mt-2 w-100 d-block border border-primary form-control'
                         />
                     </div>
-
                     {currentUser ? <button className='btn btn-outline-secondary mt-2'>Send</button> :
                         <button className='btn btn-outline-secondary mt-2' disabled >Login</button>}
-
                 </form>
-
-
             </div>
-
         </div>
     )
 }

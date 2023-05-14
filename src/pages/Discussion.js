@@ -35,7 +35,7 @@ const Discussion = () => {
         <div>
             <div className='card-scroll-horizontal'>
                 {document && document.map((item, index) => (
-                    <div className='book-card-container btn' key={index}
+                    <div className='book-card-container ' key={index}
                         onClick={() => JoinClub(item.id)}
                     >
                         <div className='book-card-img-container'>
@@ -51,10 +51,6 @@ const Discussion = () => {
                     </div>
                 ))}
             </div>
-            {currentUser ? <button className='btn btn-outline-secondary mt-4 ms-4'
-            >ADD NEW CLUB</button> :
-                <button className='btn btn-outline-secondary mt-4 ms-4'
-                    disabled>ADD NEW CLUB</button>}
         </div>
     )
 }

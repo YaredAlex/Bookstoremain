@@ -66,9 +66,12 @@ function Detail() {
                         <div className='img_detail'>
                             <img src={data.imageUrl} className="" alt={data.name} />
                         </div>
-                        <p
-                            className='w-50 text-center fw-bold'>{data.name}</p>
+                        <p className='w-400 text-left fw-bold mt-2 mb-0'>TITLE:
+                            <span className='fw-normal d-inline m-2'>{data.name}</span></p>
+                        <p className='w-400 text-left fw-bold mt-1 mb-0'>AUTHOR:
+                            <span className='fw-normal d-inline m-2'>{data.author}</span></p>
                         <div className='w-400 mt-md-2 book-descrption'>
+                            <p className='fw-bold mb-0'>DESCRIPTION</p>
                             <p>{data.description}</p>
                         </div>
                         <p className='m-0'>Rating</p>

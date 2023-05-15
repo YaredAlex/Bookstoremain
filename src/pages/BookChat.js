@@ -25,7 +25,6 @@ const BookChat = () => {
     useEffect(() => {
         getBook();
         getUser();
-        console.log("called By me")
         const docRef = doc(db, "book-discussion", id);
         const getChats = () => {
             getDoc(docRef)
@@ -49,6 +48,12 @@ const BookChat = () => {
                         }
                     }
                     setChats([...tmp])
+                    setTimeout(() => {
+                        document.getElementById("chats").scrollTop = document.getElementById('chats').scrollHeight;
+
+                    }, 100)
+
+
                 })
                 .catch(e => {
                     console.log(e);
@@ -105,6 +110,10 @@ const BookChat = () => {
                 }
             }
             setChats([...tmp])
+            setTimeout(() => {
+                document.getElementById("chats").scrollTop = document.getElementById('chats').scrollHeight;
+
+            }, 100)
         });
     }
     const Messages = (chat, index) => {
@@ -127,8 +136,8 @@ const BookChat = () => {
                     <h5 className='text-center'>CLUB</h5>
                     <p className='p-2 mb-0'>{book.name}</p>
                 </div>}
-            <div className='chat-window p-2'>
-                <div className='chats'>
+            <div className='chat-window p-2' >
+                <div className='chats' id='chats'>
                     {chats ? chats.map((chat, index) => (
                         <Messages chat={chat} index={index} key={index} />
                     )) : <></>}

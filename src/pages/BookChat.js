@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import db from '../config';
 
 const BookChat = () => {
@@ -49,7 +49,9 @@ const BookChat = () => {
                     }
                     setChats([...tmp])
                     setTimeout(() => {
-                        document.getElementById("chats").scrollTop = document.getElementById('chats').scrollHeight;
+                        const chatWindow = document.getElementById("chats")
+                        if (chatWindow)
+                            chatWindow.scrollTop = chatWindow.scrollHeight;
 
                     }, 100)
 
@@ -62,7 +64,7 @@ const BookChat = () => {
         getChats();
         return () => {
             setChats([]);
-            getChats();
+            //getChats();
         }
     }, [])
     const sendChat = (e) => {
@@ -118,13 +120,13 @@ const BookChat = () => {
         return (
             <div key={index} >
                 {chat.chat ? <>
-                    {chat.chat.email === currentUser.email ?
-                        <div className='border border-secondary rounded-pill p-1 ps-2 pe-2 mb-1 d-inline-block'
+                    {currentUser && chat.chat.email === currentUser.email ?
+                        <div className='border border-secondary rounded-pill p-1 ps-3 pe-2 mb-1 d-inline-block'
                             style={{ background: "linear-gradient(90deg, rgba(255,214,143,1) 0%, rgba(255,177,254,1) 55%, rgba(218,142,255,1) 100%)", color: "black" }}>
                             <p className='mb-0'>{chat.chat.msg}</p>
-                            <span className='rounded-circle bg-primary text-white pe-1 ps-1'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
+                            <span className='rounded-circle bg-primary text-white pe-1 ps-1 d-inline-block'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
                         </div> :
-                        <div className='border border-secondary rounded-pill p-1 ps-2 pe-2 mb-1 d-inline-block'
+                        <div className='border border-secondary rounded-pill p-1 ps-3 pe-2 mb-1 d-inline-block'
                             style={{ background: "linear-gradient(90deg, rgba(246,79,252,1) 0%, rgba(177,177,255,1) 55%, rgba(142,236,255,1) 100%)" }}>
                             <p className='mb-0'>{chat.chat.msg}</p>
                             <span className='rounded-circle bg-primary text-white pe-1 ps-1'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
@@ -154,7 +156,7 @@ const BookChat = () => {
                         />
                     </div>
                     {currentUser ? <button className='btn btn-outline-secondary mt-2'>Send</button> :
-                        <button className='btn btn-outline-secondary mt-2' disabled >Login</button>}
+                        <Link className='btn btn-outline-secondary mt-2' to={"/login"} >Login</Link>}
                 </form>
             </div>
         </div>

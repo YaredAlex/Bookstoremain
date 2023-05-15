@@ -7,6 +7,7 @@ import db from '../config';
 const BookChat = () => {
     const { id } = useParams()
     const [chats, setChats] = useState([])
+    const [isUser, setIsUser] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
     const [book, setBook] = useState("")
     const getBook = async () => {
@@ -20,6 +21,7 @@ const BookChat = () => {
     const getUser = getAuth().onAuthStateChanged(user => {
         if (user != null) {
             setCurrentUser(user)
+            setIsUser(true)
         }
     })
     useEffect(() => {
@@ -117,6 +119,7 @@ const BookChat = () => {
         });
     }
     const Messages = (chat, index) => {
+
         return (
             <div key={index} >
                 {chat.chat ? <>
@@ -124,12 +127,12 @@ const BookChat = () => {
                         <div className='border border-secondary rounded-pill p-1 ps-3 pe-2 mb-1 d-inline-block'
                             style={{ background: "linear-gradient(90deg, rgba(255,214,143,1) 0%, rgba(255,177,254,1) 55%, rgba(218,142,255,1) 100%)", color: "black" }}>
                             <p className='mb-0'>{chat.chat.msg}</p>
-                            <span className='rounded-circle bg-primary text-white pe-1 ps-1 d-inline-block'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
+                            <span className='rounded-circle bg-primary text-white pe-1 ps-1 '>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
                         </div> :
                         <div className='border border-secondary rounded-pill p-1 ps-3 pe-2 mb-1 d-inline-block'
                             style={{ background: "linear-gradient(90deg, rgba(246,79,252,1) 0%, rgba(177,177,255,1) 55%, rgba(142,236,255,1) 100%)" }}>
                             <p className='mb-0'>{chat.chat.msg}</p>
-                            <span className='rounded-circle bg-primary text-white pe-1 ps-1'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
+                            <span className='rounded-circle bg-primary text-white pe-1 ps-1 d-inine-block'>{chat.chat.email.substring(0, 1).toUpperCase()}</span>
                         </div>}
 
                 </> : <></>}
